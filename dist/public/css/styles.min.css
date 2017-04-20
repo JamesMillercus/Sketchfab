@@ -2,14 +2,23 @@ body {
   /*test*/
 }
 body {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: lightblue;
+  padding: 0;
+  margin: 0;
 }
 
-.main-content,
-header,
-footer {
+h1 {
+  color: white;
+  width: 100%;
+  position: absolute;
   text-align: center;
+  margin: 10px;
+  z-index: 1;
+}
+
+#api-frame {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  z-index: 0;
 }
