@@ -1,15 +1,26 @@
 export class SketchfabModel{
 	constructor(urlid){
-		this.urlid = urlid;
 		let version = '1.0.0';
-		let iframe = document.getElementById( 'api-frame' );
-		this.client = new Sketchfab( version, iframe );
-		this.init();
+		this.api = null;
+		self = this;
+		this.client = new Sketchfab( version, this.createIframe() );
+		this.requestSketchfabModel(urlid);
 	}
 
-	init(){
-		this.client.init( this.urlid, {
+	createIframe(){
+		let totalIframes = document.getElementsByTagName("iframe").length+1;
+		let iframeID = "iframe"+ totalIframes;
+		let iframe = document.createElement( "iframe" );
+		iframe.setAttribute( "id", iframeID );
+		$( "#sketchContainer" ).append( iframe );
+		return iframe;
+	}
+
+	requestSketchfabModel(urlid){
+		self.api = urlid;
+		this.client.init( urlid, {
 			success: function onSuccess( api ){
+				self.api = api;
 				api.start();
 				api.addEventListener( 'viewerready', function() {
 				// API is ready to use
@@ -22,5 +33,9 @@ export class SketchfabModel{
 			}
 		} );
 	}
-}
 
+	startAPI(){
+		console.log(self.api);
+		self.api.start();
+	}
+}
