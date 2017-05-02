@@ -22,39 +22,89 @@ const runSequence = require('run-sequence');
 const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
 
+//task execution
+const exec = require('child_process').exec;
+
+
 gulp.task('default', function(callback){
-	runSequence(['sass', 'jslibs', 'es6', 'server', 'html', 'images', 'fonts', 'browserSync', 'watch'], callback )
+	runSequence(['db','sitestyles', 'sass', 'jslibs', 'es6', 'server', 'models', 'updates', 'routes', 'html', 'favico', 'procfile', 'images', 'fonts', 'browserSync', 'watch'], callback )
 });
 
 // gulp.task('build', function(callback){
-// 	runSequence(['images', 'fonts'], callback )
+// 	runSequence(['images', 'fonts', 'admin', 'procfile'], callback )
 // })
 
 gulp.task('watch', function(){
-	gulp.watch('app/public/views/*.pug', ['html']);
-	gulp.watch('app/*.js', ['server']);
-	gulp.watch('app/public/js/**/*.js', ['es6']);
-	gulp.watch('app/public/js/libs/*.js', ['jslibs']);
-	gulp.watch('app/public/scss/**/*.scss', ['sass']);
+	gulp.watch('app/templates/**/*.pug', ['html']); //html
+	gulp.watch('app/*.js', ['server']); // keystone settings
+	gulp.watch('app/updates/*.js', ['updates']); // keystone admin
+	gulp.watch('app/models/*.js', ['models']); // keystone models
+	gulp.watch('app/routes/**/*.js', ['routes']); // keystone routes
+	gulp.watch('app/public/js/custom/**/*.js', ['es6']); // front end js
+	gulp.watch('app/public/js/libs/custom/*.js', ['jslibs']); // front end libs
+	gulp.watch('app/public/customStyles/scss/**/*.scss', ['sass']); //sass
+});
+
+gulp.task('db', function(cb){
+	  exec('mongod -f ./mongo/config/mongod.conf', function (err, stdout, stderr) {
+	    console.log(stdout);
+	    console.log(stderr);
+	    cb(err);
+	  });
+})
+
+//task to put all admin files into dist folder
+gulp.task('favico', function(){
+	return gulp.src('app/public/*.ico')
+	.pipe(gulp.dest('dist/public'))
+});
+
+gulp.task('procfile', function(){
+	return gulp.src('app/Procfile')
+	.pipe(gulp.dest('dist/'))
 });
 
 //task to optimise images + put them in dist folder
 gulp.task('images', function(){
-	return gulp.src('app/public/assets/**/*.+(png|jpg|gif|svg|mp4|ogv|ogg)')
+	return gulp.src('app/public/images/**/*.+(png|jpg|gif|svg|mp4|ogv|ogg)')
 	.pipe(cache(imagemin({
 		interlaced: true
 	})))
-	.pipe(gulp.dest('dist/public/assets/'))
+	.pipe(gulp.dest('dist/public/images/'))
 });
 
 gulp.task('fonts', function(){
-	return gulp.src('app/public/assets/fonts/**/*')
-	.pipe(gulp.dest('dist/public/assets/fonts/'))
+	return gulp.src('app/public/fonts/**/*')
+	.pipe(gulp.dest('dist/public/fonts/'))
 });
 
 gulp.task('server', function(){
 	return gulp.src('app/*.js')
 	.pipe(gulp.dest('dist'))
+	.pipe(browserSync.reload({
+		stream: true
+	})); //build folder
+});
+
+gulp.task('updates', function(){
+	return gulp.src('app/updates/*.js')
+	.pipe(gulp.dest('dist/updates/'))
+	.pipe(browserSync.reload({
+		stream: true
+	})); //build folder
+});
+
+gulp.task('models', function(){
+	return gulp.src('app/models/*.js')
+	.pipe(gulp.dest('dist/models/'))
+	.pipe(browserSync.reload({
+		stream: true
+	})); //build folder
+});
+
+gulp.task('routes', function(){
+	return gulp.src('app/routes/**/*.js')
+	.pipe(gulp.dest('dist/routes/'))
 	.pipe(browserSync.reload({
 		stream: true
 	})); //build folder
@@ -75,19 +125,39 @@ gulp.task('es6', function() { //transform all code into es2015 format
 	})) //build folder
 });
 
+// //jQuery
+// gulp.task('jquery', function(){
+// 	return gulp.src('app/public/js/jquery/*.js')
+// 	// .pipe(uglify()) //minifies code
+// 	.pipe(gulp.dest('dist/public/js/jquery/'));
+// });
+
+// //bootstrap
+// gulp.task('bootstrap', function(){
+// 	return gulp.src('app/public/js/bootstrap/*.js')
+// 	// .pipe(uglify()) //minifies code
+// 	.pipe(gulp.dest('dist/public/js/bootstrap/'));
+// });
+
 gulp.task('jslibs', function(){
 	return gulp.src('app/public/js/libs/*.js')
 	.pipe(concat('libs.min.js'))
 	// .pipe(uglify()) //minifies code
 	.pipe(gulp.dest('dist/public/js/libs/'));
-})
+});
+
+//task to turn sass into css and then reload browser
+gulp.task('sitestyles', function(){
+	return gulp.src('app/public/styles/**/*.+(css|scss)')
+    .pipe(gulp.dest('dist/public/styles'))
+});
 
 //task to turn sass into css and then reload browser
 gulp.task('sass', function(){
-	return gulp.src('app/public/scss/**/*.scss')
+	return gulp.src('app/public/customStyles/scss/**/*.scss')
 	.pipe(sass())
 	.pipe(concatCss('styles.min.css'))
-    .pipe(gulp.dest('dist/public/css/'))
+    .pipe(gulp.dest('dist/public/customStyles/css/'))
     .pipe(browserSync.reload({
 		stream: true
 	}))
@@ -97,7 +167,7 @@ gulp.task('sass', function(){
 gulp.task('nodemon', function (cb) {
 	var started = false;
 	return nodemon({
-		script: 'dist/index.js'
+		script: 'dist/keystone.js'
 	}).on('start', function () {
 		//avoid nodemon being started multiple times
 		if (!started) {
@@ -133,10 +203,8 @@ gulp.task('nodemon', function (cb) {
 
 gulp.task('browserSync', ['nodemon'], function() {
 	browserSync.init(null, {
-	    proxy: "localhost:3000",
-	    files: ["public/**/*.*"],
-		port: 4000,
-		browser: "google chrome",
+	    proxy: "http://127.0.0.1:3000",
+		port: 4000
     })
 	console.log("Browser sync is working");
 });
@@ -144,8 +212,8 @@ gulp.task('browserSync', ['nodemon'], function() {
 
 
 gulp.task('html', function(){
-	return gulp.src('app/public/views/*.pug')
-	.pipe(gulp.dest('dist/public/views/'))
+	return gulp.src('app/templates/**/*.pug')
+	.pipe(gulp.dest('dist/templates/'))
 	.pipe(browserSync.reload({
 		stream: true
 	}));

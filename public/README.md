@@ -1,0 +1,1 @@
+Static files (css, js, images, etc.) that are publicly available

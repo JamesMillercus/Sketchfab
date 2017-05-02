@@ -1,0 +1,17 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Audiences
+
+block content
+	#sketchContainer
+	.container
+		.row
+			.col-mid-4.col-lg-4
+				.row
+					each audience in audiences
+						.col-md-4.col-lg-4
+							h2: a(href='/audiences/' + audience.slug)= audience.title
+							if audience.image
+								img(src=audience._.image.limit(680,680)).img-rounded

@@ -1,0 +1,32 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Audience
+
+block content
+	.container
+		.row
+			.col-md-21.col-lg-12
+				article
+					p: a(href = '/audiences') Back to audiences
+					hr
+					header
+						h1= data.audience.title
+					row
+						.col-md-6.col-lg-6
+							if data.audience.image
+								img(src=data.audience._.image.limit(680,680)).img-rounded
+
+						.col-md-6.col-lg-6
+							ul.list-group
+								li.list-group-item 
+									strong Price: £
+									strong= data.audience.price
+								li.list-group-item
+									strong Quantity: 
+									strong= data.audience.quantity
+								.well
+									strong Description: 
+									strong= data.audience.description
+								a.btn.btn-sucess.btn-block(href = "/contact") Ask About This Audience

@@ -1,0 +1,43 @@
+//The base layout for our view templates
+
+/*
+
+Jade comes with some great features to simplify templates 
+- including using layouts that define regions. 
+We're going to use a layout called 
+../common/templates/layout/base.jade, 
+which is included on the first line of the file below:
+
+*/
+
+include ../mixins/flash-messages
+ 
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width")
+        
+        title= title || 'My Keystone Website'
+        link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+        link(href="/styles/site.min.css", rel="stylesheet")
+        
+        block css
+        block head
+    body
+        
+        #header My Keystone Website
+        
+        #body
+            
+            block intro
+            
+            +flash-messages(messages)
+            
+            block content
+        
+        #footer Powered by <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a>.
+    
+    script(src='/js/lib/jquery/jquery-1.10.2.min.js')
+    
+    block js
