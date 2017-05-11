@@ -40,8 +40,9 @@ gulp.task('watch', function(){
 	gulp.watch('app/updates/*.js', ['updates']); // keystone admin
 	gulp.watch('app/models/*.js', ['models']); // keystone models
 	gulp.watch('app/routes/**/*.js', ['routes']); // keystone routes
-	gulp.watch('app/public/js/custom/**/*.js', ['es6']); // front end js
-	gulp.watch('app/public/js/libs/custom/*.js', ['jslibs']); // front end libs
+	gulp.watch('app/public/js/*.js', ['es6']); // bundle.js
+	gulp.watch('app/public/js/modules/**/*.js', ['es6']); // front end js
+	gulp.watch('app/public/js/libs/*.js', ['jslibs']); // front end libs
 	gulp.watch('app/public/customStyles/scss/**/*.scss', ['sass']); //sass
 });
 

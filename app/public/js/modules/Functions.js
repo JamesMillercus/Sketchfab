@@ -6,6 +6,7 @@ export function styles(iframes) {
 		//define the old parent
 		let oldParent = document.getElementById('sketchContainer');
 		let wrapper;
+		let firstIframe = document.getElementById('iframe1');
 		for (var x = 1; x < iframes+1; x++) {
 			$( "#iframe"+x ).addClass( "twinModel" );
 			let oldChild = document.getElementById('iframe'+x);
@@ -14,12 +15,23 @@ export function styles(iframes) {
 				wrapper = document.createElement('section');
 				wrapper.setAttribute( "id", 'section'+totalSections );
 				oldParent.appendChild(wrapper);
+				// $( "#iframe"+x ).addClass( "headerModel" );
 			}
 			wrapper.appendChild(oldChild);
+
+			if(isOdd(iframes)){
+				// $( "#iframe2" ).addClass( "twinModel" );
+			}
+			
+			//PUSH 2ND IFRAME TO NEXT SECTION
+
 			resizeStyles();
 		}
 	}
 }
+
+
+
 function resizeStyles(){
 	h = window.innerHeight;
 	$( "section").height(h/totalSections);	

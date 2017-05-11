@@ -1,7 +1,12 @@
+//1. display full model data in front end
+//2. display category data
+//3. create a toggle switch that can display that category
+
+
+
 var keystone = require('keystone'),
 	Types = keystone.Field.Types; // input types for fields
 
-//define a new keystone object, with the name 'Audience' and below fields
 var Audience = new keystone.List('Audience', { 
 	map: { name: 'title'},
 	singular: 'Audience',
@@ -13,14 +18,19 @@ var Audience = new keystone.List('Audience', {
 	autokey: { path: 'slug', from: 'title', unique: true }
 });
 
-//add fields to be used
+
+
 Audience.add({
 	title: { type: String, required: true },
-	price: { type: Number },
-	quantity: { type: Number },
-	description: { type: Types.Html, wysiwyg: true, height: 300 },
-	image: { type: Types.CloudinaryImage },
+	url: { type: Types.Url },
+	description: { type: Types.Html, wysiwyg: true, height: 10 },
+	categories: { type: Types.Relationship, ref: 'AudienceCategory', many: true },
+	users: { type: Types.Relationship, ref: 'User', many: true },
+	// selector: { type: Types.Select, options: 'one, two, three', default: 'one' },
 	publishDate: { type: Date, default: Date.now }
 });
 
 Audience.register();
+
+
+	// categories: { type: Types.Select, ref: 'AudienceCategory', many: true },

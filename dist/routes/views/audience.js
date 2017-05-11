@@ -15,7 +15,8 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		audiences: []
 	}
-	//When audience is selected
+
+	// When audience is selected
 	view.on('init', function(next){
 		// set the slug to the selected Audience
 		var q = keystone.list('Audience').model.findOne({
