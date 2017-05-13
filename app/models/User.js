@@ -24,8 +24,8 @@ User.schema.virtual('canAccessKeystone').get(function () {
 /**
  * Relationships
  */
-User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
-User.relationship({ ref: 'Audience', path: 'Audience', refPath: 'categories' });
+// User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
+User.relationship({ ref: 'Audience', path: 'Audience', refPath: 'users' });
 
 
 /**
@@ -33,3 +33,4 @@ User.relationship({ ref: 'Audience', path: 'Audience', refPath: 'categories' });
  */
 User.defaultColumns = 'name, email, isAdmin';
 User.register();
+
