@@ -26,6 +26,10 @@ var importRoutes = keystone.importer(__dirname);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
+//newly added test for sign in redirect
+keystone.pre('render', middleware.nonAdminSignIn);
+
+
 
 // Import Route Controllers
 var routes = {
@@ -43,6 +47,9 @@ exports = module.exports = function (app) {
 	app.get('/audiences', routes.views.audiences);
 	app.get('/user', routes.views.user);
 	app.all('/contact', routes.views.contact);
+	app.all('/signin', routes.views.signin);
+	app.all('/signout', routes.views.signout);
+	// app.get('/signin', routes.views.signin);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 

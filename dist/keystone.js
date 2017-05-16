@@ -48,11 +48,18 @@ keystone.set('nav', {
 	galleries: 'galleries',
 	enquiries: 'enquiries',
 	audiences: ['audiences', 'audience-categories'],
-	users: 'users',
+	users: 'users'
 });
 
+keystone.set('signin url', '/signin');
+keystone.set('signout url', '/signout');
+keystone.set('signin redirect', '/');
+
+// keystone.set('signin redirect', function(user, req, res){
+//   console.log("yes???");
+//   var url = (req.user.isAdmin) ? '/keystone' : '/user';
+//   res.redirect(url);
+// });
+
 // Start Keystone to connect to your database and initialise the web server
-
-
-
 keystone.start();

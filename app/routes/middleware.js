@@ -51,6 +51,7 @@ exports.flashMessages = function (req, res, next) {
 	Prevents people from accessing protected pages when they're not signed in
  */
 exports.requireUser = function (req, res, next) {
+	console.log("required user");
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/keystone/signin');
@@ -58,3 +59,36 @@ exports.requireUser = function (req, res, next) {
 		next();
 	}
 };
+
+/**
+	Redirect logic (remove if not working)
+ */
+ 
+exports.nonAdminSignIn = function(req, res, next) {
+
+ //  	console.log("Sign in recorded:");
+ //  	console.log(req.user);
+ //  	if(req.user){
+ //  	  console.log("user logged in, admin privilidge? ");
+	//   console.log(req.user.isAdmin);
+	//   if(!req.user.isAdmin){
+	//   	console.log("is not an admin");
+	// 	  // keystone.set('signin redirect', '/user');
+	// 	  // res.redirect('/user');
+	//   }
+	//   else{
+	//   	console.log("is an admin");
+	//   }
+ //  	}
+
+ //  	keystone.set('signin redirect', function(user, req, res){
+	//   var url = (req.user.isAdmin) ? '/keystone' : '/user';
+	//   res.redirect(url);
+	// });
+  // if (!req.user.isAdmin) {
+
+  //   // res.redirect('/user');
+  //   // return;
+  // }
+  next();
+}

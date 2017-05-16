@@ -1,8 +1,9 @@
 /* User functionality page:
 	1. User gets url to sign into
-	2. user signs in
-	3. user is redirected to their page
-*/
+	2. If user is not signed in, display sign in form else display content
+	3. user signs in
+	3. user is displayed content on their page */
+	
 var keystone = require('keystone');
 
 
