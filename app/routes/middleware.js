@@ -23,7 +23,7 @@ exports.initLocals = function (req, res, next) {
 		{ label: 'Blog', key: 'blog', href: '/blog' },
 		{ label: 'Gallery', key: 'gallery', href: '/gallery' },
 		{ label: 'Audiences', key: 'audiences', href: '/audiences' },
-		{ label: 'Users', key: 'user', href: '/user' },
+		{ label: 'Users', key: 'users', href: '/user' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 	];
 	res.locals.user = req.user;
@@ -54,7 +54,7 @@ exports.requireUser = function (req, res, next) {
 	console.log("required user");
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
+		res.redirect('/signin');
 	} else {
 		next();
 	}

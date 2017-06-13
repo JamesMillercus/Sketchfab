@@ -12,7 +12,6 @@ var keystone = require('keystone');
 keystone.init({
 	'name': 'Keystone',
 	'brand': 'Keystone',
-
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
@@ -50,6 +49,8 @@ keystone.set('nav', {
 	audiences: ['audiences', 'audience-categories'],
 	users: 'users'
 });
+
+keystone.set('admin path', 'admin');
 
 keystone.set('signin url', '/signin');
 keystone.set('signout url', '/signout');

@@ -17,7 +17,7 @@ html
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
-			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+			link(href="/admin/styles/content/editor.min.css", rel="stylesheet")
 		//custom styles
 		link(href="/customStyles/css/styles.min.css", rel="stylesheet")
 		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -58,11 +58,9 @@ html
 						ul.nav.navbar-nav.navbar-right
 							if user
 								if user.canAccessKeystone
-									li: a(href='/keystone') Open Keystone
+									li: a(href='/admin') Open Keystone
 								li: a(href='/signout') Sign Out
-								// li: a(href='/keystone/signout') Sign Out
 							else
-								// li: a(href='/keystone/signin') Sign In
 								li: a(href='/signin') Sign In
 
 		//- BODY
@@ -104,7 +102,7 @@ html
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
 		if user && user.canAccessKeystone
-			script(src='/keystone/js/content/editor.js')
+			script(src='/admin/js/content/editor.js')
 
 		//- Add scripts that are globally required by your site here.
 

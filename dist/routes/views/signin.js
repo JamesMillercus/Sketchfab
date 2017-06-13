@@ -26,7 +26,7 @@ exports = module.exports = function(req, res) {
                 res.redirect(req.query.from);
             } else {
             	if(!req.user.isAdmin) res.redirect('/user');	
-                else res.redirect('/keystone');
+                else res.redirect('/admin');
             }
         }
 

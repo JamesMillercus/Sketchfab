@@ -1,9 +1,3 @@
-//1. display full model data in front end
-//2. display category data
-//3. create a toggle switch that can display that category
-
-
-
 var keystone = require('keystone'),
 	Types = keystone.Field.Types; // input types for fields
 
@@ -31,6 +25,3 @@ Audience.add({
 });
 
 Audience.register();
-
-
-	// categories: { type: Types.Select, ref: 'AudienceCategory', many: true },

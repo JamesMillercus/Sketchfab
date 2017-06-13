@@ -1,20 +1,23 @@
-extends ../layouts/default
+extends ../layouts/sketchfab
 
 block intro
-	.container
-		h1 Audience
+	
+	#singleContainer
+		h1 User
+		p: a.linkID(href = '/user') Back to main menu
+		h1#title= data.audience.title
+	#loadingScreen
+	#sketchContainer
+		p.url= data.audience.url
+		p.description= data.audience.description
 
 block content
 	.container
 		.row
 			.col-md-21.col-lg-12
 				article
-					p: a(href = '/audiences') Back to audiences
 					hr
 					header
-						h1= data.audience.title
-					#sketchContainer
-						p.url= data.audience.url
 					// row
 					// 	.col-md-6.col-lg-6
 					// 		if data.audience.image

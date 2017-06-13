@@ -119,7 +119,7 @@ gulp.task('es6', function() { //transform all code into es2015 format
 	.bundle() //return a stream of code
 	.pipe(source('bundle.min.js')) //bundle into a new file name
 	.pipe(buffer()) //put all new code into
-	// .pipe(uglify()) //minifies code
+	.pipe(uglify()) //minifies code
 	.pipe(gulp.dest('dist/public/js/'))
 	.pipe(browserSync.reload({
 		stream: true
@@ -143,7 +143,7 @@ gulp.task('es6', function() { //transform all code into es2015 format
 gulp.task('jslibs', function(){
 	return gulp.src('app/public/js/libs/*.js')
 	.pipe(concat('libs.min.js'))
-	// .pipe(uglify()) //minifies code
+	.pipe(uglify()) //minifies code
 	.pipe(gulp.dest('dist/public/js/libs/'));
 });
 
