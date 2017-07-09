@@ -1,25 +1,43 @@
 export class SketchfabModel{
-	constructor(urlid, linkid, totalLinks, number){
+	constructor(urlid, linkid, name, totalLinks, number){
 		let version = '1.0.0';
 		this.api = null;
 		self = this;
-		this.client = new Sketchfab( version, this.createIframe(this.createContainer(linkid)) );
+		this.client = new Sketchfab( version, this.createIframe(this.createContainer(linkid, name)) );
 		this.requestSketchfabModel(urlid);
 		this.checkIframeLoaded(number+1, totalLinks);
 	}
 
-	createContainer(linkContainer){
+	createContainer(linkContainer, name){
 		let totalContainers = document.getElementsByClassName("linkID").length+1;
 		let linkID = "linkID"+ totalContainers;
 		let link = document.createElement( "a" );
+		// let name = $( ".name" ).text();
 		link.setAttribute( "href", linkContainer );
 		link.setAttribute( "id", linkID );
 		link.setAttribute( "class", "linkID" );
+
+		let title = document.createElement("div");
+		title.setAttribute("class", "title");
+		title.setAttribute("id", "title" + totalContainers);
+		title.append(name);
+		
+		let momoLogoContainer = document.createElement("div");
+		momoLogoContainer.setAttribute("class", "momoModelLogoContainer");
+		momoLogoContainer.setAttribute("id", "momoModelLogoContainer"+ totalContainers);
+
+		let momoLogo = document.createElement("div");
+		momoLogo.setAttribute("class", "momoModelLogo");
+		momoLogo.setAttribute("id", "momoModelLogo"+ totalContainers);
 
 		let scrollID = "scrollID"+ totalContainers;
 		let scrollOver = document.createElement( "div" );
 		scrollOver.setAttribute( "id", scrollID );
 		scrollOver.setAttribute( "class", "scrollOver" );
+
+		$( link ).append( momoLogoContainer );
+		$( momoLogoContainer ).append( momoLogo );
+		$( link ).append( title );
 		$( link ).append( scrollOver );
 		$( "#sketchContainer" ).append( link );
 		return linkID;
@@ -30,10 +48,7 @@ export class SketchfabModel{
 		let iframeID = "iframe"+ totalIframes;
 		let iframe = document.createElement( "iframe" );
 		iframe.setAttribute( "id", iframeID );
-
-		// let form = $("<form></form>");
-		// form.append("<input type=button value=button>");
-		// $( "#" + container ).append( form );
+		iframe.setAttribute( "class", "multimodel" );
 		$( "#" + container ).append( iframe );
 		return iframe;
 	}

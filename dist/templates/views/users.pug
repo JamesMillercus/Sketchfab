@@ -6,11 +6,14 @@ block intro
 
 block content
 	if user
-		// p.user= user
 		#loadingScreen
 		#sketchContainer
+			.accountInfo
+				h1.user= locals.data.currentUser.name.first + " " + locals.data.currentUser.name.last
+				p.description= locals.data.currentUser.description
 		if locals.data
 			each audience in locals.data.active
+				p.name= audience.slug
 				p.url= audience.url
 				p.link= '/user/' + audience.slug
 				//change above to user/

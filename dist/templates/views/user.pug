@@ -2,39 +2,24 @@ extends ../layouts/sketchfab
 
 block intro
 	
-	#singleContainer
-		h1 User
-		p: a.linkID(href = '/user') Back to main menu
-		h1#title= data.audience.title
-	#loadingScreen
-	#sketchContainer
-		p.url= data.audience.url
-		p.description= data.audience.description
 
 block content
-	.container
-		.row
-			.col-md-21.col-lg-12
-				article
-					hr
-					header
-					// row
-					// 	.col-md-6.col-lg-6
-					// 		if data.audience.image
-					// 			img(src=data.audience._.image.limit(680,680)).img-rounded
+	if user
+		#singleContainer
+			h1#username= data.username.first + " " + data.username.last 
+			p: a.linkID(href = '/') Back to main menu
+			h1#title= data.audience.title
+			#email= data.emails
+		#loadingScreen
+		#sketchContainer
+			p.url= data.audience.url
+			p.description= data.audience.description
 
-					// 	.col-md-6.col-lg-6
-					// 		ul.list-group
-					// 			li.list-group-item 
-					// 				strong Price: £
-					// 				strong= data.audience.price
-					// 			li.list-group-item
-					// 				strong Quantity: 
-					// 				strong= data.audience.quantity
-					// 			.well
-					// 				strong Description: 
-					// 				strong= data.audience.description
-					// 			a.btn.btn-sucess.btn-block(href = "/contact") Ask About This Audience
+	else
+		p We have created a default Admin user for you with the email <strong>james.miller@momentumww.com</strong> and the password <strong>keystone</strong>.
+		p
+			a(href='/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
+			|  to use the Admin UI.
 
 block js
 	script(src='/js/bundle.min.js')

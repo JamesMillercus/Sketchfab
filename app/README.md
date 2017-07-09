@@ -5,9 +5,17 @@ Then:
 
 TO DO:
 
-1. Feedback
-- Add an email service so that we know when clients have sent us their feedback
 
-2. Design
-- Design layout for Momentum
-- Approve and deploy!
+1. Single model
+
+	- Client logo
+	- Style nav bar
+
+2. Loading page
+	
+	- Animating loading with different coloured Mlogos
+
+3. Live
+
+	- Docker + push to server
+	- Approve and deploy!

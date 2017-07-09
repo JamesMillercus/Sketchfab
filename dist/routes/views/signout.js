@@ -13,13 +13,11 @@ exports = module.exports = function(req, res) {
     //Set form
     locals.form = req.body;
 
-
 	view.on('init', function (next) {
 		console.log("logged out?");
 		keystone.session.signout(req, res, function(){ 
 			res.redirect('/');
 		});
-		 
     });   
 
 	view.render('signout');

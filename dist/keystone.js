@@ -54,7 +54,7 @@ keystone.set('admin path', 'admin');
 
 keystone.set('signin url', '/signin');
 keystone.set('signout url', '/signout');
-keystone.set('signin redirect', '/');
+// keystone.set('signin redirect', '/');
 
 // keystone.set('signin redirect', function(user, req, res){
 //   console.log("yes???");

@@ -11,15 +11,16 @@ mixin flash-messages(messages)
 				+flash-message(message, 'danger')
 				
 mixin flash-message(message, type)
-	div(class='alert alert-' + type)
-		if utils.isObject(message)
-			if message.title
-				h4= message.title
-			if message.detail
-				p= message.detail
-			if message.list
-				ul
-					each item in message.list
-						li= item
-		else
-			= message
+	// div(class='alert alert-' + type)
+	// 	// if utils
+	// 	// 	if utils.isObject(message)
+	// 	// 		if message.title
+	// 	// 			h4= message.title
+	// 	// 		if message.detail
+	// 	// 			p= message.detail
+	// 	// 		if message.list
+	// 	// 			ul
+	// 	// 				each item in message.list
+	// 	// 					li= item
+	// 	// 	else
+	// 	// 		= message

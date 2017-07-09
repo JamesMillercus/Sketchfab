@@ -10,7 +10,7 @@
 exports.create = {
 	User: [
 		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'james.miller@momentumww.com', 'password': 'keystone', 'isAdmin': true },
-	],
+	], // username: test@momentumww.com pw: test
 };
 
 /*

@@ -1,6 +1,189 @@
+/**
+ * html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+ * Richard Clark (http://richclarkdesign.com)
+ * http://cssreset.com
+ */
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
 body {
   padding: 0;
   margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+  letter-spacing: .1px;
+  color: white;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: inset 0px 1000px 0px #ebebeb;
 }
 
 #h1header {
@@ -44,6 +227,14 @@ body {
   margin-left: 50px;
 }
 
+.logo {
+  margin-top: 5%;
+  width: 210px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5%;
+}
+
 .onlyModel {
   width: 100%;
   height: 100%;
@@ -62,10 +253,7 @@ body {
   padding: 0;
   border: 0;
   position: relative;
-}
-
-.oddModel {
-  width: 100%;
+  border-radius: 2px;
 }
 
 .headerModel {
@@ -96,10 +284,10 @@ iframe {
 
 .scrollOver {
   /*display:inline-block;*/
-  height: 100%;
-  width: 100%;
+  height: 102%;
+  width: 102%;
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   background-color: black;
   opacity: .5;
 }
@@ -110,10 +298,19 @@ iframe {
 
 #sketchContainer {
   width: 100%;
-  height: 100%;
+  height: 75%;
   position: fixed;
-  margin: 0;
   z-index: 0;
+  min-width: 1200px;
+  min-height: 490px;
+  bottom: 6.5%;
+  padding-left: 4.5%;
+  padding-right: 4.5%;
+}
+
+.sectionContainer {
+  width: 100%;
+  height: 100%;
 }
 
 section {
@@ -121,7 +318,7 @@ section {
   margin: 0;
   padding: 0;
   border: 0;
-  overflow: none;
+  overflow: hidden;
 }
 
 .url {
@@ -151,4 +348,435 @@ section {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+#email {
+  display: none;
+}
+
+.accountInfo {
+  position: absolute;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.description {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.title {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 38px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #343e48;
+  background-color: #ebebeb;
+  margin: 0;
+  padding: 0;
+  padding-top: 12px;
+  bottom: 0px;
+  box-shadow: inset 0px -2px 5px #bdbcbc;
+}
+
+.backgroundImage {
+  width: 120%;
+  z-index: -1;
+  position: fixed;
+  background-image: url("../../images/3d.jpg");
+  opacity: .5;
+  height: 110%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-width: 1200px;
+  min-height: 750px;
+}
+
+.pageContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -2;
+  background-color: black;
+  overflow: hidden;
+}
+
+.loginarea {
+  width: 40%;
+  height: 100%;
+  min-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  max-width: 600px;
+  z-index: 1;
+}
+
+.loginarea .loginbox,
+.loginBackground {
+  width: 100%;
+  height: auto;
+  /*height:40%;*/
+  /*min-height: 355px;*/
+  display: block;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  z-index: -1;
+  max-width: 450px;
+}
+
+.loginBackground {
+  background-color: #F90B7D;
+  opacity: .6;
+  width: 100%;
+  height: 100%;
+}
+
+.logindetails {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+  display: block;
+  height: 100%;
+  max-width: 330px;
+}
+
+.signin-form {
+  top: 4%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 10%;
+}
+
+.form-control-box input,
+select {
+  /*height:100px;*/
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  position: absolute;
+  height: 34px;
+  border: 0px;
+  border-radius: 2px;
+  padding-left: 15px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.form-control-box input::-webkit-input-placeholder {
+  color: white;
+}
+
+.inputBackground {
+  background-color: black;
+  opacity: .45;
+  height: 34px;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  border-radius: 2px;
+}
+
+.hideForm {
+  position: absolute;
+  left: -100000000000000000000012345678910px;
+  z-index: -1000;
+}
+
+.userInput {
+  display: block;
+  /*background-color:blue;*/
+  height: 34px;
+}
+
+.passwordInput {
+  margin-top: 5px;
+  /*background-color:red;*/
+  height: 34px;
+  display: block;
+}
+
+.checkBox {
+  display: inline-block;
+  float: left;
+  margin-top: 3px;
+}
+
+.submitBtn {
+  background-color: #ebebeb;
+  border: 0px;
+  border-radius: 2px;
+  float: right;
+  width: 80px;
+  height: 34px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #343e48;
+}
+
+.submitBtn:hover {
+  background-color: #d3d3d3;
+}
+
+.bottomButtons {
+  margin-top: 15px;
+  height: 34px;
+}
+
+.checkBox input {
+  display: inline-block;
+  margin-top: -0px;
+  margin-left: 5px;
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5);
+  /* IE */
+  -moz-transform: scale(1.5);
+  /* FF */
+  -webkit-transform: scale(1.5);
+  /* Safari and Chrome */
+  -o-transform: scale(1.5);
+  /* Opera */
+  padding: 0px;
+  border-radius: 2px;
+  box-shadow: inset 0px 1000px 0px #ebebeb;
+}
+
+.checkBox input:before {
+  box-shadow: inset 0px 1000px 0px #ebebeb;
+}
+
+.checkBox input:after {
+  box-shadow: inset 0px 1000px 0px rgba(235, 235, 235, 0);
+}
+
+.checkBoxText {
+  margin-left: 10px;
+  display: inline-block;
+  color: white;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.modelsLogo {
+  background-image: url("../../images/momoLogo.png");
+  width: 60px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  z-index: 1;
+  margin-top: 18px;
+  position: absolute;
+  margin-left: -13px;
+}
+
+.logoText {
+  font-size: 56px;
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  margin-left: -8px;
+}
+
+.firstParagraph {
+  margin-top: 5%;
+  font-size: 18px;
+  text-align: center;
+}
+
+.secondParagraph {
+  font-size: 18px;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.clientLogo {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.navBar {
+  z-index: 1;
+  width: 100%;
+  background-color: white;
+  height: 70px;
+  padding-left: 5%;
+  padding-right: 5%;
+  position: absolute;
+  min-width: 1200px;
+}
+
+.navContainer {
+  height: 35px;
+  width: 100%;
+  display: block;
+  top: 28%;
+  position: relative;
+  /*background-color: green;*/
+}
+
+.buttons a,
+.buttons div {
+  height: 100%;
+  width: 24px;
+  background-repeat: no-repeat;
+  background-size: 100% 200%;
+  background-position: 0px 0px;
+  opacity: .6;
+  float: right;
+}
+
+.signoutButton {
+  background-image: url("../../images/logoutButton.png");
+}
+
+.details {
+  background-image: url("../../images/details.png");
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.buttons a:hover,
+.buttons div:hover {
+  background-position: 0px -35px;
+  opacity: 1;
+}
+
+.hiddenChar {
+  font-size: 0px;
+  letter-spacing: 51px;
+}
+
+.buttons {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.btnContainer {
+  z-index: 2;
+  position: absolute;
+}
+
+.momoLogoContainer {
+  width: 88px;
+  display: block;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 2px;
+  padding-left: 7px;
+  border-top: 2px solid #343e48;
+  border-bottom: 2px solid #343e48;
+}
+
+.momoLogoContainer .modelsLogo {
+  width: 27px;
+  margin-top: 8px;
+  margin-left: -10px;
+  background-image: url("../../images/momoHeader.png");
+  z-index: 2;
+}
+
+.momoLogoContainer .logoText {
+  color: #343e48;
+  font-size: 24px;
+  letter-spacing: .5px;
+  line-height: 1.1;
+}
+
+.momoLogoContainer .hiddenChar {
+  letter-spacing: 24px;
+  font-size: 0px;
+  color: white;
+  opacity: 1;
+}
+
+.linkID {
+  width: 49%;
+  margin-left: .5%;
+  margin-right: .5%;
+  overflow: hidden;
+}
+
+.oddModel {
+  width: 99%;
+  height: 105%;
+  margin: 0;
+  z-index: 0;
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  position: relative;
+  border-radius: 2px;
+  margin-left: .5%;
+  margin-right: .5%;
+  overflow: hidden;
+}
+
+.momoModelLogoContainer {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.momoModelLogo {
+  width: 130px;
+  height: 130px;
+  border-radius: 100px;
+  position: relative;
+  background-color: #343e48;
+  background-image: url("../../images/momoLogo.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.multimodel {
+  margin-top: -9%;
+}
+
+.multiOddmodel {
+  margin-top: -30px;
+}
+
+.multiSectionContainers {
+  width: 50%;
+  float: left;
+}
+
+.multimodelIframeHeight {
+  margin-top: -80px;
+}
+
+.singleLinkID {
+  height: 100%;
+  width: 90.5%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.momoModelLogoSingleContainer {
+  margin-top: 15%;
 }
