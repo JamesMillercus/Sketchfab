@@ -5,21 +5,62 @@ block intro
 
 block content
 	if user
-		#singleContainer
-			h1#username= data.username.first + " " + data.username.last 
-			p: a.linkID(href = '/') Back to main menu
-			h1#title= data.audience.title
-			#email= data.emails
+		#username= data.username.first + " " + data.username.last 
+		#email= data.emails
 		#loadingScreen
+			.slantedCorner
+			.slantedHeight
+			.loadingContainer
+				.loadingCenter
+					h1.loadingText 
+						span.headerFirstText Loading 
+						span.headerSecondText your
+						span.modelsText
+							.modelsLogo
+							span.hiddenChar m
+							span.revealdChars odels
+							.loadingLogos
+								.modelsLogo.logo1
+								.modelsLogo.logo2
+								.modelsLogo.logo3
+		.navBar
+			.navContainer
+				img(src=locals.data.currentUser.image.url).clientLogo
+				.momoLogoContainer
+					.modelsLogo
+					.logoText
+						span.hiddenChar m
+						|odels
+				.buttons
+					a(href='/signout').button.signoutButton
+					.button.commentButton
+					a(href = '/').button.homeBtn
 		#sketchContainer
+			.commentFormContainer
+				.formLayout
+					h1#modelname
+						span#title= data.audience.title
+						|  comments
+					.noMessage Please leave your feedback of this model in the comment box below and a member of our team will be in touch with you shortly.
+					.messageContainer
+						img(src=locals.data.currentUser.image.url).commentLogo
+						.newMessageBox
+							.messageTriangle
+							.newMessage
+							.newMessageBackground
+					form.formInput
+						textarea.formFeedback(type='text', name='feedback', placeholder='Please type your message here...')
+						.formFeedbackBackground
+					input.cancelForm.messageForm(type='button', value='Cancel')
+					input.submitForm.messageForm(type='button', value='Submit')
+				.commentFormContainerBackground
 			p.url= data.audience.url
 			p.description= data.audience.description
 
 	else
-		p We have created a default Admin user for you with the email <strong>james.miller@momentumww.com</strong> and the password <strong>keystone</strong>.
-		p
-			a(href='/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-			|  to use the Admin UI.
+		script.
+			window.location.href = '/';
+
 
 block js
 	script(src='/js/bundle.min.js')

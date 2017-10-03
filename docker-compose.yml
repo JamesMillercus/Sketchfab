@@ -1,0 +1,29 @@
+version: "2"
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - ./mongo/data/db/:/data/db/
+    ports:
+      - "27017:27017"
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    links:
+      - mongo
+    environment:
+      - MONGO_URI=mongo
+      - NODE_ENV=production
+    # Start development
+    # command: gulp docker
+    # Start production
+    command: bash -c "npm install && node ./dist/keystone.js"
+
+
+
+    # docker stop $(docker ps -a -q)
+    # docker rm $(docker ps -a -q)

@@ -2,9 +2,7 @@ var async = require('async'),
 	keystone = require('keystone');
 
 var Post = keystone.list('Audience'),
-	nodemailer = require('nodemailer'),
-	pw = 'breakinglincoln';
-
+	nodemailer = require('nodemailer');
 /**
  * List Posts
  */
@@ -64,7 +62,7 @@ exports.update = function(req, res) {
 				postOne: item[0]
 			});
 			//PASS MANAGER EMAIL INTO DATA.MANAGER
-			email( data.user, data.email, item[0].title, data.details );
+			if(data.details) email( data.user, data.email, item[0].title, data.details );
 		});
 		
 	});
@@ -77,8 +75,8 @@ function email(user, email, model, message){
 	    secure: false, // TLS requires secureConnection to be false
 	    port: 25, // port for secure SMT
 	    auth: {
-	        user: 'jamesandjamesmiller@gmail.com',
-	        pass: pw
+	        user: 'momomodels99@gmail.com',
+	        pass: 'Momentum99'
 	    },
 	    tls: {
 	    	rejectUnauthorized: false
@@ -87,10 +85,10 @@ function email(user, email, model, message){
 
 	// setup email data with unicode symbols
 	var mailOptions = {
-	    from: '"James Miller 👻" <jamesandjamesmiller@gmail.com>', // sender address
+	    from: '"Models Sketchfab CMS 👻" <james.miller@momentumww.com>', // sender address
 	    to: email, // list of receivers 
 	    subject: 'Momo Sketchfab CMS Update', // Subject line
-	    html: '<p> Model ' + model + ' has been updated by ' + user + '. Their message is: ' + message +'</p>' // html body
+	    html: '<p> ' + user + ' has updated their feed back on ' + model + ': ' + message +'</p>' // html body
 	};
 
 	// send mail with defined transport object

@@ -1,0 +1,19 @@
+extends ../layouts/sketchfab
+
+block intro
+	.container
+		// h1#h1header Audiences
+
+block content
+	// p.categories= audiences.categories
+	#sketchContainer
+		if locals.data
+			each audience in locals.data.active
+				p.url= audience.url
+				p.link= '/audiences/' + audience.slug
+				// p.categories= audience.categories
+
+block js
+	script(src='/js/bundle.min.js')
+	
+								

@@ -38,6 +38,7 @@ exports = module.exports = function(req, res) {
 		q.exec(function(err, result){
 			if(result) locals.data.audience = result;
 			if(req.user) {
+				locals.data.currentUser = req.user;
 				locals.data.username = req.user.name;
 				//for each manager
 				for(var x = 0; x < locals.data.manager.length; x++){

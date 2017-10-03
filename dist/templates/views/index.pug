@@ -7,6 +7,21 @@ block intro
 block content
 	if user
 		#loadingScreen
+			.slantedCorner
+			.slantedHeight
+			.loadingContainer
+				.loadingCenter
+					h1.loadingText 
+						span.headerFirstText Loading 
+						span.headerSecondText your
+						span.modelsText
+							.modelsLogo
+							span.hiddenChar m
+							span.revealdChars odels
+							.loadingLogos
+								.modelsLogo.logo1
+								.modelsLogo.logo2
+								.modelsLogo.logo3
 		.navBar
 			.navContainer
 				img(src=locals.data.currentUser.image.url).clientLogo
@@ -23,7 +38,7 @@ block content
 		// 	p.description= locals.data.currentUser.description
 		#sketchContainer
 			// .sectionContainer#sectionContainer1
-				
+
 		if locals.data
 			each audience in locals.data.active
 				p.name= audience.slug
